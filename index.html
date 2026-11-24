@@ -148,6 +148,10 @@
     .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
     .tags li { padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; font: 12px/1.5 var(--mono); color: var(--text-2); }
     .project .actions { margin-top: auto; padding-top: 12px; gap: 8px; }
+    .btn.soon { color: var(--text-2); border-style: dashed; cursor: default; }
+    .btn.soon:hover { background: transparent; border-color: var(--line-strong); }
+    .btn.soon:active { transform: none; }
+    .soon-tag { padding: 2px 6px; border-radius: 4px; background: rgb(16 185 129 / 0.12); color: var(--accent); font: 500 11px/1.4 var(--mono); }
 
     /* Hexium */
     .hex { display: grid; gap: 24px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
@@ -276,10 +280,7 @@
             <p>An agency building GDPR-compliant websites. Hand-written HTML, CSS and JavaScript with self-hosted fonts.</p>
             <ul class="tags"><li>agency</li><li>gdpr</li><li>vanilla js</li></ul>
             <div class="actions">
-              <a class="btn btn-sm btn-primary" href="https://vibecodelabs.be" target="_blank" rel="noopener noreferrer">
-                vibecodelabs.be
-                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-              </a>
+              <span class="btn btn-sm soon" aria-label="vibecodelabs.be, coming soon">vibecodelabs.be <span class="soon-tag">Soon</span></span>
               <a class="btn btn-sm" href="https://github.com/Qrdz0/VibeCode-Labs" target="_blank" rel="noopener noreferrer">Source</a>
             </div>
           </article>
