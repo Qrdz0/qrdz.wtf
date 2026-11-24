@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Qrdz | Full-Stack Developer & Founder</title>
+  <meta name="description" content="Qrdz, a 15-year-old full-stack developer. Founder of VibeCode Labs, builder of Moneyium and an aim trainer, and Senior Moderator at Hexium.">
+  <link rel="canonical" href="https://qrdz.wtf/">
+  <meta property="og:title" content="Qrdz | Full-Stack Developer & Founder">
+  <meta property="og:description" content="15-year-old full-stack developer. VibeCode Labs, Moneyium, Aim Trainer and Hexium moderation.">
+  <meta property="og:url" content="https://qrdz.wtf/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#050505">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050505'/%3E%3Cpath d='M9 11l6 5-6 5M17 22h7' stroke='%2310b981' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("fonts/inter.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Space Grotesk";
+      src: url("fonts/space-grotesk.woff2") format("woff2");
+      font-weight: 300 700;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #050505;
+      --surface: #0d0d0e;
+      --surface-2: #151517;
+      --line: rgb(250 250 250 / 0.08);
+      --line-strong: rgb(250 250 250 / 0.16);
+      --text: #fafafa;
+      --text-2: #a1a1aa;
+      --text-3: #8b8b94;
+      --accent: #10b981;
+      --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --display: "Space Grotesk", var(--font);
+      --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+      --ease: cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 400 16px/1.6 var(--font);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    h1, h2, h3, p, ul, dl, dd { margin: 0; }
+    ul { padding: 0; list-style: none; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 600; }
+    .skip { position: absolute; left: 16px; top: -48px; padding: 8px 12px; background: var(--text); color: var(--bg); border-radius: 8px; z-index: 10; }
+    .skip:focus { top: 12px; }
+
+    /* Snow: fixed behind everything, never takes clicks */
+    #snow { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+
+    .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    .mono { font-family: var(--mono); font-size: 13px; color: var(--text-3); }
+    .accent { color: var(--accent); }
+
+    /* Header */
+    .top { position: sticky; top: 0; z-index: 5; background: rgb(5 5 5 / 0.86); border-bottom: 1px solid var(--line); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+    .brand { display: inline-flex; align-items: center; min-height: 44px; font: 600 18px/1 var(--display); text-decoration: none; }
+    .brand span { color: var(--accent); }
+    .nav { display: flex; align-items: center; gap: 4px; }
+    .nav .link { display: none; }
+    .link {
+      display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+      color: var(--text-2); font-size: 14px; text-decoration: none;
+      transition: color 150ms var(--ease);
+    }
+    .link:hover { color: var(--text); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; padding: 0 20px; border-radius: 10px;
+      border: 1px solid var(--line-strong); background: transparent; color: var(--text);
+      font: 500 16px/1 var(--font); text-decoration: none; cursor: pointer;
+      transition: background-color 150ms var(--ease), border-color 150ms var(--ease), transform 100ms var(--ease);
+    }
+    .btn:hover { background: var(--surface-2); border-color: rgb(250 250 250 / 0.26); }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn-primary:hover { background: #e4e4e7; border-color: #e4e4e7; }
+    .btn-sm { min-height: 40px; padding: 0 14px; font-size: 14px; border-radius: 8px; }
+    svg.i { width: 16px; height: 16px; flex: none; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Hero */
+    .hero { padding: 56px 0 72px; }
+    .hero .wrap { display: grid; gap: 48px; align-items: center; }
+    .prompt { margin-bottom: 20px; }
+    h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); line-height: 1.02; letter-spacing: -0.035em; }
+    .lede { margin-top: 20px; max-width: 32ch; font-size: 18px; color: var(--text-2); }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    /* Terminal card (hero visual) */
+    .term { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .term-bar { display: flex; align-items: center; justify-content: space-between; height: 44px; padding: 0 16px; border-bottom: 1px solid var(--line); }
+    .lights { display: flex; gap: 6px; }
+    .lights i { width: 10px; height: 10px; border-radius: 50%; background: var(--surface-2); border: 1px solid var(--line-strong); }
+    .term-body { padding: 20px; font: 14px/1.7 var(--mono); }
+    .term-body .cmd { color: var(--text-2); }
+    .term-body dl { margin: 12px 0 16px; display: grid; gap: 4px; }
+    .term-body dl div { display: grid; grid-template-columns: 11ch 1fr; gap: 12px; }
+    .term-body dt { color: var(--text-3); }
+    .term-body dd { color: var(--text); overflow-wrap: anywhere; }
+    .caret { display: inline-block; width: 8px; height: 16px; vertical-align: -3px; background: var(--accent); }
+
+    /* Sections */
+    section.block { padding: 72px 0; border-top: 1px solid var(--line); scroll-margin-top: 64px; }
+    .head { display: grid; gap: 8px; margin-bottom: 32px; }
+    h2 { font-size: clamp(1.75rem, 5vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; }
+    .head p:not(.mono) { color: var(--text-2); max-width: 56ch; }
+
+    /* Stack */
+    .stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .chip {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      min-height: 64px; padding: 0 20px;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      font-weight: 500;
+    }
+    .chip .mono { font-size: 12px; }
+
+    /* Projects */
+    .projects { display: grid; gap: 16px; }
+    .project {
+      display: flex; flex-direction: column; gap: 12px;
+      padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    }
+    .project h3 { font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; }
+    .project > p:not(.mono) { color: var(--text-2); max-width: 52ch; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .tags li { padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; font: 12px/1.5 var(--mono); color: var(--text-2); }
+    .project .actions { margin-top: auto; padding-top: 12px; gap: 8px; }
+
+    /* Hexium */
+    .hex { display: grid; gap: 24px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+    .hex-id { display: flex; align-items: center; gap: 16px; }
+    .hex-id img { width: 56px; height: 56px; border-radius: 12px; }
+    .hex-id h3 { font-size: 24px; line-height: 1.2; }
+    .hex-facts { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .hex-facts div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .hex-facts dt { color: var(--text-2); }
+    .hex-facts dd { font: 600 20px/1.2 var(--display); text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* Footer */
+    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); }
+    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
+    footer p { color: var(--text-3); font-size: 14px; }
+    .socials { display: flex; flex-wrap: wrap; gap: 0 4px; margin-left: -12px; }
+    .socials .link { gap: 8px; background: none; border: 0; font-family: var(--font); cursor: pointer; }
+    .copied { color: var(--accent); }
+
+    @media (min-width: 640px) {
+      .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .nav .link { display: inline-flex; }
+    }
+
+    @media (min-width: 768px) {
+      .wrap { padding: 0 32px; }
+      .hero { min-height: calc(100svh - 64px); display: flex; align-items: center; padding: 80px 0; }
+      .hero .wrap { grid-template-columns: 1.15fr 1fr; gap: 64px; }
+      section.block { padding: 96px 0; }
+      .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .project.feature { grid-column: 1 / -1; padding: 32px; }
+      .project.feature h3 { font-size: 32px; }
+      .hex { grid-template-columns: 1fr 1fr; gap: 48px; padding: 32px; align-items: center; }
+      .hex-facts { border-top: 0; }
+      .hex-facts div:first-child { border-top: 1px solid var(--line); }
+    }
+
+    @media (min-width: 1024px) {
+      .stack { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn, .link { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="snow" aria-hidden="true"></canvas>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#main" aria-label="Qrdz, back to top">qrdz<span>.</span>wtf</a>
+      <nav class="nav" aria-label="Main">
+        <a class="link" href="#work">Work</a>
+        <a class="link" href="#stack">Stack</a>
+        <a class="link" href="#hexium">Hexium</a>
+        <a class="btn btn-sm" href="https://github.com/Qrdz0" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div>
+          <p class="prompt mono"><span class="accent">$</span> whoami</p>
+          <h1 id="hero-title">Hey, I'm Qrdz.</h1>
+          <p class="lede">15-year-old Full-Stack Developer &amp; Founder.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://github.com/Qrdz0" target="_blank" rel="noopener noreferrer">
+              View GitHub
+              <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <a class="btn" href="#work">See my work</a>
+          </div>
+        </div>
+
+        <figure class="term" aria-label="Profile summary" style="margin: 0">
+          <div class="term-bar">
+            <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="mono">~/qrdz</span>
+          </div>
+          <div class="term-body">
+            <p class="cmd"><span class="accent">$</span> cat profile</p>
+            <dl>
+              <div><dt>role</dt><dd>full-stack developer</dd></div>
+              <div><dt>age</dt><dd>15</dd></div>
+              <div><dt>founder</dt><dd>VibeCode Labs</dd></div>
+              <div><dt>shipping</dt><dd>Moneyium, Aim Trainer</dd></div>
+              <div><dt>moderating</dt><dd>Hexium, 12k+ members</dd></div>
+            </dl>
+            <p class="cmd"><span class="accent">$</span> <span class="caret" aria-hidden="true"></span></p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block" id="stack" aria-labelledby="stack-title">
+      <div class="wrap">
+        <div class="head">
+          <p class="mono">~/stack</p>
+          <h2 id="stack-title">Tech stack</h2>
+        </div>
+        <ul class="stack">
+          <li class="chip">Node.js <span class="mono">.mjs</span></li>
+          <li class="chip">HTML/CSS <span class="mono">.html</span></li>
+          <li class="chip">JavaScript <span class="mono">.js</span></li>
+          <li class="chip">Luau <span class="mono">.luau</span></li>
+          <li class="chip">SQLite <span class="mono">.db</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="head">
+          <p class="mono">~/projects</p>
+          <h2 id="work-title">My work</h2>
+        </div>
+        <div class="projects">
+          <article class="project feature">
+            <p class="mono">~/projects/vibecode-labs</p>
+            <h3>VibeCode Labs</h3>
+            <p>An agency building GDPR-compliant websites. Hand-written HTML, CSS and JavaScript with self-hosted fonts.</p>
+            <ul class="tags"><li>agency</li><li>gdpr</li><li>vanilla js</li></ul>
+            <div class="actions">
+              <a class="btn btn-sm btn-primary" href="https://vibecodelabs.be" target="_blank" rel="noopener noreferrer">
+                vibecodelabs.be
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+              <a class="btn btn-sm" href="https://github.com/Qrdz0/VibeCode-Labs" target="_blank" rel="noopener noreferrer">Source</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <p class="mono">~/projects/moneyium</p>
+            <h3>Moneyium</h3>
+            <p>A secure, full-stack virtual economy platform.</p>
+            <ul class="tags"><li>node.js</li><li>sqlite</li><li>economy</li></ul>
+            <div class="actions">
+              <a class="btn btn-sm" href="https://github.com/Qrdz0/moneyium" target="_blank" rel="noopener noreferrer">Source</a>
+            </div>
+          </article>
+
+          <article class="project">
+            <p class="mono">~/projects/aim-trainer</p>
+            <h3>Aim Trainer</h3>
+            <p>A React and Canvas aim trainer with Classic, Gridshot and Tracking modes, and a leaderboard that only accepts server-verified scores.</p>
+            <ul class="tags"><li>react</li><li>canvas</li><li>leaderboard</li></ul>
+            <div class="actions">
+              <a class="btn btn-sm" href="https://github.com/Qrdz0/aim-trainer" target="_blank" rel="noopener noreferrer">Source</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="hexium" aria-labelledby="hexium-title">
+      <div class="wrap">
+        <div class="head">
+          <p class="mono">~/community</p>
+          <h2 id="hexium-title">Hexium moderation</h2>
+        </div>
+        <div class="hex">
+          <div style="display: grid; gap: 20px">
+            <div class="hex-id">
+              <img src="hexium-logo.png" width="56" height="56" alt="Hexium logo" loading="lazy">
+              <div>
+                <h3>Senior Moderator <span class="accent">@</span> Hexium</h3>
+                <p class="mono">hexium.wtf/users/36</p>
+              </div>
+            </div>
+            <p style="color: var(--text-2); max-width: 44ch">Managing a 12k+ community, handling economy transactions, and resolving user disputes.</p>
+            <div class="actions" style="margin-top: 4px">
+              <a class="btn" href="https://hexium.wtf/users/36/profile" target="_blank" rel="noopener noreferrer">
+                Hexium profile
+                <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+              </a>
+            </div>
+          </div>
+          <dl class="hex-facts">
+            <div><dt>Community</dt><dd>12k+</dd></div>
+            <div><dt>Economy</dt><dd>Transactions</dd></div>
+            <div><dt>Support</dt><dd>Disputes</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <ul class="socials">
+        <li><a class="link" href="https://github.com/Qrdz0" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><button class="link" type="button" id="discord" aria-describedby="discord-status">Discord <span class="mono">qrdz</span></button></li>
+        <li><a class="link" href="mailto:unbanqrdz@gmail.com">unbanqrdz@gmail.com</a></li>
+      </ul>
+      <p>Built by Qrdz. © 2026.</p>
+      <span id="discord-status" class="mono copied" role="status" aria-live="polite"></span>
+    </div>
+  </footer>
+
+  <script>
+    // Discord has no public profile URL by username, so the button copies the handle
+    (() => {
+      const btn = document.getElementById('discord');
+      const status = document.getElementById('discord-status');
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText('qrdz');
+          status.textContent = 'Discord username copied';
+        } catch {
+          status.textContent = 'Discord username: qrdz';
+        }
+        setTimeout(() => { status.textContent = ''; }, 2500);
+      });
+    })();
+
+    // 3-layer parallax snow: far layers fall slower, fade more and shift less on scroll
+    (() => {
+      const canvas = document.getElementById('snow');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const LAYERS = [
+        { share: 0.5, r: [0.4, 0.9], vy: [12, 22], a: [0.12, 0.22], parallax: 0.04 },
+        { share: 0.32, r: [0.9, 1.5], vy: [24, 40], a: [0.22, 0.36], parallax: 0.12 },
+        { share: 0.18, r: [1.5, 2.4], vy: [44, 64], a: [0.36, 0.55], parallax: 0.24 },
+      ];
+      const rand = ([lo, hi]) => lo + Math.random() * (hi - lo);
+      let w = 0, h = 0, flakes = [], last = 0;
+
+      const make = (L) => ({
+        L, x: Math.random() * w, y: Math.random() * h,
+        r: rand(L.r), vy: rand(L.vy), a: rand(L.a), drift: Math.random() * Math.PI * 2,
+      });
+
+      const resize = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const widthChanged = window.innerWidth !== w;
+        w = window.innerWidth; h = window.innerHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        // only respawn on width change, so a mobile URL bar showing/hiding doesn't reset the snow
+        if (widthChanged) {
+          const total = Math.min(110, Math.round(w / 12));
+          flakes = LAYERS.flatMap((L) => Array.from({ length: Math.round(total * L.share) }, () => make(L)));
+        }
+      };
+
+      const draw = () => {
+        const sy = window.scrollY;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = '#fff';
+        for (const f of flakes) {
+          const y = (((f.y - sy * f.L.parallax) % h) + h) % h;
+          ctx.globalAlpha = f.a;
+          ctx.beginPath();
+          ctx.arc(f.x, y, f.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      };
+
+      const tick = (t) => {
+        const dt = Math.min((t - (last || t)) / 1000, 0.05); // cap so a background tab doesn't jump
+        last = t;
+        for (const f of flakes) {
+          f.y = (f.y + f.vy * dt) % h;
+          f.drift += dt * 0.6;
+          f.x += Math.sin(f.drift) * f.L.parallax * 40 * dt;
+          if (f.x < -4) f.x = w + 4; else if (f.x > w + 4) f.x = -4;
+        }
+        draw();
+        requestAnimationFrame(tick);
+      };
+
+      resize();
+      window.addEventListener('resize', resize);
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        draw(); // still snow, no movement
+        window.addEventListener('resize', draw);
+        return;
+      }
+      requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
