@@ -128,10 +128,12 @@
     .head p:not(.mono) { color: var(--text-2); max-width: 56ch; }
 
     /* Stack */
-    .stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .stack { display: grid; gap: 32px; }
+    .group h3 { margin-bottom: 12px; font: 500 14px/1.4 var(--font); color: var(--text-2); }
+    .group ul { display: grid; gap: 8px; }
     .chip {
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      min-height: 64px; padding: 0 20px;
+      min-height: 56px; padding: 0 20px;
       background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
       font-weight: 500;
     }
@@ -167,17 +169,28 @@
     footer { padding: 32px 0 48px; border-top: 1px solid var(--line); }
     footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
     footer p { color: var(--text-3); font-size: 14px; }
-    .socials { display: flex; flex-wrap: wrap; gap: 0 4px; margin-left: -12px; }
-    .socials .link { gap: 8px; background: none; border: 0; font-family: var(--font); cursor: pointer; }
-    .copied { color: var(--accent); }
-    footer .legal { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+
+    /* Contact */
+    .mail {
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px;
+      padding: 24px; border: 1px solid var(--line-strong); border-radius: 16px;
+      background: var(--surface); text-decoration: none;
+      transition: background-color 150ms var(--ease), border-color 150ms var(--ease);
+    }
+    .mail:hover { background: var(--surface-2); border-color: var(--accent); }
+    .mail-label { grid-column: 1; }
+    .mail-addr { grid-column: 1; font: 600 clamp(1.5rem, 7vw, 3rem)/1.1 var(--display); letter-spacing: -0.02em; overflow-wrap: anywhere; }
+    .mail .i { grid-column: 2; grid-row: 1 / 3; width: 28px; height: 28px; color: var(--text-2); transition: color 150ms var(--ease), transform 150ms var(--ease); }
+    .mail:hover .i { color: var(--accent); transform: translate(2px, -2px); }
+    .contact-gh { gap: 12px; margin-top: 12px; margin-left: -12px; font-size: 16px; color: var(--text); }
+    .contact-gh .mono { transition: color 150ms var(--ease); }
+    .contact-gh:hover .mono { color: var(--text-2); }
     .legal nav { display: flex; flex-wrap: wrap; margin-left: -12px; }
     .legal .link { color: var(--text-3); }
     .legal .link:hover { color: var(--text); }
     @media (min-width: 640px) { .legal nav { margin-left: 0; margin-right: -12px; } }
 
     @media (min-width: 640px) {
-      .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .nav .link { display: inline-flex; }
     }
 
@@ -194,13 +207,13 @@
       .hex-facts div:first-child { border-top: 1px solid var(--line); }
     }
 
-    @media (min-width: 1024px) {
-      .stack { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    @media (min-width: 900px) {
+      .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .btn, .link { transition: none; }
+      .btn, .link, .mail, .mail .i { transition: none; }
     }
   </style>
 </head>
@@ -215,6 +228,7 @@
         <a class="link" href="#work">Work</a>
         <a class="link" href="#stack">Stack</a>
         <a class="link" href="#hexium">Hexium</a>
+        <a class="link" href="#contact">Contact</a>
         <a class="btn btn-sm" href="https://github.com/Qrdz0" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
     </div>
@@ -262,13 +276,31 @@
           <p class="mono">~/stack</p>
           <h2 id="stack-title">Tech stack</h2>
         </div>
-        <ul class="stack">
-          <li class="chip">Node.js <span class="mono">.mjs</span></li>
-          <li class="chip">HTML/CSS <span class="mono">.html</span></li>
-          <li class="chip">JavaScript <span class="mono">.js</span></li>
-          <li class="chip">Luau <span class="mono">.luau</span></li>
-          <li class="chip">SQLite <span class="mono">.db</span></li>
-        </ul>
+        <div class="stack">
+          <div class="group">
+            <h3>Backend &amp; Databases</h3>
+            <ul>
+              <li class="chip">Node.js <span class="mono">.mjs</span></li>
+              <li class="chip">SQLite <span class="mono">.db</span></li>
+              <li class="chip">Python <span class="mono">.py</span></li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Frontend</h3>
+            <ul>
+              <li class="chip">HTML <span class="mono">.html</span></li>
+              <li class="chip">CSS <span class="mono">.css</span></li>
+              <li class="chip">JavaScript <span class="mono">.js</span></li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Game Dev &amp; AI</h3>
+            <ul>
+              <li class="chip">Luau (Roblox) <span class="mono">.luau</span></li>
+              <li class="chip">Ollama <span class="mono">Modelfile</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -344,17 +376,26 @@
         </div>
       </div>
     </section>
+    <section class="block" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="head">
+          <p class="mono">~/contact</p>
+          <h2 id="contact-title">Get in Touch</h2>
+          <p>Have a project, a website or a question about my work? Email me and I'll get back to you.</p>
+        </div>
+        <a class="mail" href="mailto:hello@qrdz.wtf">
+          <span class="mail-label mono">Email</span>
+          <span class="mail-addr">hello@qrdz.wtf</span>
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="link contact-gh" href="https://github.com/Qrdz0" target="_blank" rel="noopener noreferrer">
+          GitHub <span class="mono">github.com/Qrdz0</span>
+        </a>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <ul class="socials">
-        <li><a class="link" href="https://github.com/Qrdz0" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><button class="link" type="button" id="discord" aria-describedby="discord-status">Discord <span class="mono">qrdz</span></button></li>
-        <li><a class="link" href="mailto:unbanqrdz@gmail.com">unbanqrdz@gmail.com</a></li>
-      </ul>
-      <span id="discord-status" class="mono copied" role="status" aria-live="polite"></span>
-    </div>
     <div class="wrap legal">
       <p>© 2026 Qrdz. All rights reserved.</p>
       <nav aria-label="Legal">
@@ -365,21 +406,6 @@
   </footer>
 
   <script>
-    // Discord has no public profile URL by username, so the button copies the handle
-    (() => {
-      const btn = document.getElementById('discord');
-      const status = document.getElementById('discord-status');
-      btn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText('qrdz');
-          status.textContent = 'Discord username copied';
-        } catch {
-          status.textContent = 'Discord username: qrdz';
-        }
-        setTimeout(() => { status.textContent = ''; }, 2500);
-      });
-    })();
-
     // 3-layer parallax snow: far layers fall slower, fade more and shift less on scroll
     (() => {
       const canvas = document.getElementById('snow');
