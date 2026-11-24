@@ -170,6 +170,11 @@
     .socials { display: flex; flex-wrap: wrap; gap: 0 4px; margin-left: -12px; }
     .socials .link { gap: 8px; background: none; border: 0; font-family: var(--font); cursor: pointer; }
     .copied { color: var(--accent); }
+    footer .legal { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .legal nav { display: flex; flex-wrap: wrap; margin-left: -12px; }
+    .legal .link { color: var(--text-3); }
+    .legal .link:hover { color: var(--text); }
+    @media (min-width: 640px) { .legal nav { margin-left: 0; margin-right: -12px; } }
 
     @media (min-width: 640px) {
       .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -348,8 +353,14 @@
         <li><button class="link" type="button" id="discord" aria-describedby="discord-status">Discord <span class="mono">qrdz</span></button></li>
         <li><a class="link" href="mailto:unbanqrdz@gmail.com">unbanqrdz@gmail.com</a></li>
       </ul>
-      <p>Built by Qrdz. © 2026.</p>
       <span id="discord-status" class="mono copied" role="status" aria-live="polite"></span>
+    </div>
+    <div class="wrap legal">
+      <p>© 2026 Qrdz. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <a class="link" href="privacy.html">Privacy Policy</a>
+        <a class="link" href="terms.html">Terms of Service</a>
+      </nav>
     </div>
   </footer>
 
