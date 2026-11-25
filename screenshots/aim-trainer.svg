@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <rect width="1200" height="750" fill="#111113"/>
+  <path d="M0 0H1200V44H0z" fill="#151517"/>
+  <g fill="#27272a"><circle cx="28" cy="22" r="6"/><circle cx="48" cy="22" r="6"/><circle cx="68" cy="22" r="6"/></g>
+  <text x="600" y="380" fill="#a1a1aa" font-family="ui-monospace, Consolas, monospace" font-size="32" text-anchor="middle">Aim Trainer</text>
+  <text x="600" y="424" fill="#71717a" font-family="ui-monospace, Consolas, monospace" font-size="20" text-anchor="middle">screenshot coming soon</text>
+</svg>

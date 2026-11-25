@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Qrdz | Full-Stack Developer & Founder</title>
-  <meta name="description" content="Qrdz, a 15-year-old full-stack developer. Founder of VibeCode Labs, builder of Moneyium and an aim trainer, and Senior Moderator at Hexium.">
+  <title>Qrdz | Full-Stack Developer &amp; Founder of VibeCode Labs</title>
+  <meta name="description" content="Full-stack developer and founder of VibeCode Labs, building secure web applications, compliance tools and AI interfaces. Case studies: SiteAudit, Moneyium and Aim Trainer.">
   <link rel="canonical" href="https://qrdz.wtf/">
-  <meta property="og:title" content="Qrdz | Full-Stack Developer & Founder">
-  <meta property="og:description" content="15-year-old full-stack developer. VibeCode Labs, Moneyium, Aim Trainer and Hexium moderation.">
+  <meta property="og:title" content="Qrdz | Full-Stack Developer &amp; Founder of VibeCode Labs">
+  <meta property="og:description" content="Secure web applications, compliance tools and AI interfaces. Case studies from VibeCode Labs, Moneyium and Aim Trainer.">
   <meta property="og:url" content="https://qrdz.wtf/">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#050505">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050505'/%3E%3Cpath d='M9 11l6 5-6 5M17 22h7' stroke='%2310b981' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add('js');</script>
   <style>
     @font-face {
       font-family: "Inter";
@@ -57,8 +58,9 @@
       overflow-x: hidden;
     }
     a { color: inherit; }
+    img { display: block; max-width: 100%; height: auto; }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-    h1, h2, h3, p, ul, dl, dd { margin: 0; }
+    h1, h2, h3, h4, p, ul, dl, dd, figure { margin: 0; }
     ul { padding: 0; list-style: none; }
     h1, h2, h3 { font-family: var(--display); font-weight: 600; }
     .skip { position: absolute; left: 16px; top: -48px; padding: 8px 12px; background: var(--text); color: var(--bg); border-radius: 8px; z-index: 10; }
@@ -72,18 +74,42 @@
     .accent { color: var(--accent); }
 
     /* Header */
-    .top { position: sticky; top: 0; z-index: 5; background: rgb(5 5 5 / 0.86); border-bottom: 1px solid var(--line); }
-    .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+    .top { position: sticky; top: 0; z-index: 5; background: rgb(5 5 5 / 0.92); border-bottom: 1px solid var(--line); }
+    .top .wrap { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
     .brand { display: inline-flex; align-items: center; min-height: 44px; font: 600 18px/1 var(--display); text-decoration: none; }
     .brand span { color: var(--accent); }
-    .nav { display: flex; align-items: center; gap: 4px; }
-    .nav .link { display: none; }
+    .nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
     .link {
       display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
       color: var(--text-2); font-size: 14px; text-decoration: none;
       transition: color 150ms var(--ease);
     }
     .link:hover { color: var(--text); }
+
+    /* Mobile menu: only collapses when JS is there to open it */
+    .menu-btn {
+      display: none; align-items: center; justify-content: center;
+      width: 44px; height: 44px; margin-right: -8px;
+      background: none; border: 1px solid transparent; border-radius: 10px; color: var(--text); cursor: pointer;
+      transition: background-color 150ms var(--ease), border-color 150ms var(--ease);
+    }
+    .menu-btn:hover { background: var(--surface-2); border-color: var(--line); }
+    .menu-btn svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; }
+    .menu-btn .close, .menu-btn[aria-expanded="true"] .open { display: none; }
+    .menu-btn[aria-expanded="true"] .close { display: block; }
+
+    @media (max-width: 639px) {
+      .js .menu-btn { display: inline-flex; }
+      .js .nav {
+        position: absolute; top: 100%; left: 0; right: 0;
+        display: none; flex-direction: column; align-items: stretch; gap: 0;
+        padding: 8px 16px 16px; background: var(--bg); border-bottom: 1px solid var(--line);
+      }
+      .js .nav.open { display: flex; animation: drop 160ms var(--ease); }
+      .js .nav .link { min-height: 48px; padding: 0; font-size: 16px; color: var(--text); border-bottom: 1px solid var(--line); }
+      .js .nav .btn { margin-top: 12px; min-height: 48px; }
+    }
+    @keyframes drop { from { opacity: 0; transform: translateY(-4px); } }
 
     /* Buttons */
     .btn {
@@ -98,14 +124,19 @@
     .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
     .btn-primary:hover { background: #e4e4e7; border-color: #e4e4e7; }
     .btn-sm { min-height: 40px; padding: 0 14px; font-size: 14px; border-radius: 8px; }
+    .btn.soon { color: var(--text-2); border-style: dashed; cursor: default; }
+    .btn.soon:hover { background: transparent; border-color: var(--line-strong); }
+    .btn.soon:active { transform: none; }
+    .soon-tag { padding: 2px 6px; border-radius: 4px; background: rgb(16 185 129 / 0.12); color: var(--accent); font: 500 11px/1.4 var(--mono); }
     svg.i { width: 16px; height: 16px; flex: none; stroke: currentColor; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
     /* Hero */
     .hero { padding: 56px 0 72px; }
     .hero .wrap { display: grid; gap: 48px; align-items: center; }
     .prompt { margin-bottom: 20px; }
-    h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); line-height: 1.02; letter-spacing: -0.035em; }
-    .lede { margin-top: 20px; max-width: 32ch; font-size: 18px; color: var(--text-2); }
+    h1 { font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.08; letter-spacing: -0.03em; max-width: 18ch; }
+    .lede { margin-top: 20px; font-size: 18px; color: var(--text-2); }
+    .lede strong { color: var(--text); font-weight: 500; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
     /* Terminal card (hero visual) */
@@ -139,36 +170,41 @@
     }
     .chip .mono { font-size: 12px; }
 
-    /* Projects */
+    /* Case studies */
     .projects { display: grid; gap: 16px; }
     .project {
-      display: flex; flex-direction: column; gap: 12px;
-      padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+      display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
     }
+    .shot { aspect-ratio: 16 / 10; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+    .shot img { width: 100%; height: 100%; object-fit: cover; }
+    .body { display: flex; flex: 1; flex-direction: column; gap: 12px; padding: 24px; }
     .project h3 { font-size: 24px; line-height: 1.2; letter-spacing: -0.01em; }
-    .project > p:not(.mono) { color: var(--text-2); max-width: 52ch; }
+    .body > p:not(.mono) { color: var(--text-2); max-width: 56ch; }
+    .built { margin-top: 4px; }
+    .built h4 { margin-bottom: 8px; font: 500 14px/1.4 var(--font); color: var(--text); }
+    .built ul { display: grid; gap: 6px; }
+    .built li { position: relative; padding-left: 20px; color: var(--text-2); }
+    .built li::before { content: ""; position: absolute; left: 2px; top: 0.7em; width: 8px; height: 1px; background: var(--accent); }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
     .tags li { padding: 4px 10px; border: 1px solid var(--line); border-radius: 6px; font: 12px/1.5 var(--mono); color: var(--text-2); }
-    .project .actions { margin-top: auto; padding-top: 12px; gap: 8px; }
-    .btn.soon { color: var(--text-2); border-style: dashed; cursor: default; }
-    .btn.soon:hover { background: transparent; border-color: var(--line-strong); }
-    .btn.soon:active { transform: none; }
-    .soon-tag { padding: 2px 6px; border-radius: 4px; background: rgb(16 185 129 / 0.12); color: var(--accent); font: 500 11px/1.4 var(--mono); }
+    .body .actions { margin-top: auto; padding-top: 12px; gap: 8px; }
 
     /* Hexium */
     .hex { display: grid; gap: 24px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
     .hex-id { display: flex; align-items: center; gap: 16px; }
     .hex-id img { width: 56px; height: 56px; border-radius: 12px; }
     .hex-id h3 { font-size: 24px; line-height: 1.2; }
-    .hex-facts { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .hex-facts { display: grid; border-top: 1px solid var(--line); }
     .hex-facts div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
     .hex-facts dt { color: var(--text-2); }
     .hex-facts dd { font: 600 20px/1.2 var(--display); text-align: right; font-variant-numeric: tabular-nums; }
 
-    /* Footer */
-    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); }
-    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; }
-    footer p { color: var(--text-3); font-size: 14px; }
+    /* Currently building */
+    .now { display: grid; border-top: 1px solid var(--line); }
+    .now li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .now strong { font: 600 20px/1.3 var(--display); }
+    .now .mono { text-align: right; }
 
     /* Contact */
     .mail {
@@ -183,25 +219,28 @@
     .mail .i { grid-column: 2; grid-row: 1 / 3; width: 28px; height: 28px; color: var(--text-2); transition: color 150ms var(--ease), transform 150ms var(--ease); }
     .mail:hover .i { color: var(--accent); transform: translate(2px, -2px); }
     .contact-gh { gap: 12px; margin-top: 12px; margin-left: -12px; font-size: 16px; color: var(--text); }
-    .contact-gh .mono { transition: color 150ms var(--ease); }
-    .contact-gh:hover .mono { color: var(--text-2); }
+
+    /* Footer */
+    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); }
+    footer .wrap { display: grid; gap: 16px; }
+    .studio { max-width: 60ch; color: var(--text-2); font-size: 14px; }
+    .legal { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .legal p { color: var(--text-3); font-size: 14px; }
     .legal nav { display: flex; flex-wrap: wrap; margin-left: -12px; }
     .legal .link { color: var(--text-3); }
     .legal .link:hover { color: var(--text); }
-    @media (min-width: 640px) { .legal nav { margin-left: 0; margin-right: -12px; } }
 
     @media (min-width: 640px) {
-      .nav .link { display: inline-flex; }
+      .legal nav { margin-left: 0; margin-right: -12px; }
     }
 
     @media (min-width: 768px) {
       .wrap { padding: 0 32px; }
       .hero { min-height: calc(100svh - 64px); display: flex; align-items: center; padding: 80px 0; }
-      .hero .wrap { grid-template-columns: 1.15fr 1fr; gap: 64px; }
+      .hero .wrap { grid-template-columns: 1.2fr 1fr; gap: 64px; }
       section.block { padding: 96px 0; }
       .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .project.feature { grid-column: 1 / -1; padding: 32px; }
-      .project.feature h3 { font-size: 32px; }
+      .project.feature { grid-column: 1 / -1; }
       .hex { grid-template-columns: 1fr 1fr; gap: 48px; padding: 32px; align-items: center; }
       .hex-facts { border-top: 0; }
       .hex-facts div:first-child { border-top: 1px solid var(--line); }
@@ -209,11 +248,16 @@
 
     @media (min-width: 900px) {
       .stack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+      .project.feature { display: grid; grid-template-columns: 1.1fr 1fr; }
+      .project.feature .shot { aspect-ratio: auto; min-height: 100%; border-bottom: 0; border-right: 1px solid var(--line); }
+      .project.feature .body { padding: 32px; }
+      .project.feature h3 { font-size: 32px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .btn, .link, .mail, .mail .i { transition: none; }
+      .btn, .link, .mail, .mail .i, .menu-btn { transition: none; }
+      .js .nav.open { animation: none; }
     }
   </style>
 </head>
@@ -223,8 +267,12 @@
 
   <header class="top">
     <div class="wrap">
-      <a class="brand" href="#main" aria-label="Qrdz, back to top">qrdz<span>.</span>wtf</a>
-      <nav class="nav" aria-label="Main">
+      <a class="brand" href="#main" aria-label="qrdz.wtf, back to top">qrdz<span>.</span>wtf</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <svg class="open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <nav class="nav" id="menu" aria-label="Main">
         <a class="link" href="#work">Work</a>
         <a class="link" href="#stack">Stack</a>
         <a class="link" href="#hexium">Hexium</a>
@@ -238,19 +286,19 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap">
         <div>
-          <p class="prompt mono"><span class="accent">$</span> whoami</p>
-          <h1 id="hero-title">Hey, I'm Qrdz.</h1>
-          <p class="lede">15-year-old Full-Stack Developer &amp; Founder.</p>
+          <p class="prompt mono"><span class="accent">$</span> whoami <span aria-hidden="true">→</span> qrdz</p>
+          <h1 id="hero-title">Full-Stack Developer &amp; Founder building secure web applications, compliance tools, and AI interfaces.</h1>
+          <p class="lede">Founder of <strong>VibeCode Labs</strong>.</p>
           <div class="actions">
             <a class="btn btn-primary" href="https://github.com/Qrdz0" target="_blank" rel="noopener noreferrer">
               View GitHub
               <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
-            <a class="btn" href="#work">See my work</a>
+            <a class="btn" href="#work">See case studies</a>
           </div>
         </div>
 
-        <figure class="term" aria-label="Profile summary" style="margin: 0">
+        <figure class="term" aria-label="Profile summary">
           <div class="term-bar">
             <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="mono">~/qrdz</span>
@@ -259,9 +307,9 @@
             <p class="cmd"><span class="accent">$</span> cat profile</p>
             <dl>
               <div><dt>role</dt><dd>full-stack developer</dd></div>
-              <div><dt>age</dt><dd>15</dd></div>
-              <div><dt>founder</dt><dd>VibeCode Labs</dd></div>
-              <div><dt>shipping</dt><dd>Moneyium, Aim Trainer</dd></div>
+              <div><dt>studio</dt><dd>VibeCode Labs</dd></div>
+              <div><dt>shipping</dt><dd>SiteAudit, Moneyium</dd></div>
+              <div><dt>focus</dt><dd>security, compliance, AI</dd></div>
               <div><dt>moderating</dt><dd>Hexium, 12k+ members</dd></div>
             </dl>
             <p class="cmd"><span class="accent">$</span> <span class="caret" aria-hidden="true"></span></p>
@@ -307,38 +355,77 @@
     <section class="block" id="work" aria-labelledby="work-title">
       <div class="wrap">
         <div class="head">
-          <p class="mono">~/projects</p>
-          <h2 id="work-title">My work</h2>
+          <p class="mono">~/case-studies</p>
+          <h2 id="work-title">Case studies</h2>
+          <p>What each project does and what I built for it.</p>
         </div>
         <div class="projects">
-          <article class="project feature">
-            <p class="mono">~/projects/vibecode-labs</p>
-            <h3>VibeCode Labs</h3>
-            <p>An agency building GDPR-compliant websites. Hand-written HTML, CSS and JavaScript with self-hosted fonts.</p>
-            <ul class="tags"><li>agency</li><li>gdpr</li><li>vanilla js</li></ul>
-            <div class="actions">
-              <span class="btn btn-sm soon" aria-label="vibecodelabs.be, coming soon">vibecodelabs.be <span class="soon-tag">Soon</span></span>
-              <a class="btn btn-sm" href="https://github.com/Qrdz0/VibeCode-Labs" target="_blank" rel="noopener noreferrer">Source</a>
+          <article class="project feature" aria-labelledby="p-vibecode">
+            <figure class="shot">
+              <img src="screenshots/vibecode-labs.svg" width="1200" height="750" alt="VibeCode Labs SiteAudit compliance report" loading="lazy">
+            </figure>
+            <div class="body">
+              <p class="mono">~/projects/vibecode-labs</p>
+              <h3 id="p-vibecode">VibeCode Labs</h3>
+              <p>An independent studio building GDPR-compliant websites for local businesses, with hand-written HTML, CSS and JavaScript and self-hosted fonts.</p>
+              <div class="built">
+                <h4>What I built</h4>
+                <ul>
+                  <li>A GDPR compliance scanner using Node.js and Puppeteer that scans local business sites for legal and mobile risks</li>
+                </ul>
+              </div>
+              <ul class="tags" aria-label="Technologies"><li>node.js</li><li>puppeteer</li><li>gdpr</li></ul>
+              <div class="actions">
+                <span class="btn btn-sm soon" aria-label="vibecodelabs.be, coming soon">vibecodelabs.be <span class="soon-tag">Soon</span></span>
+                <a class="btn btn-sm" href="https://github.com/Qrdz0/SiteAudit" target="_blank" rel="noopener noreferrer">Scanner source</a>
+              </div>
             </div>
           </article>
 
-          <article class="project">
-            <p class="mono">~/projects/moneyium</p>
-            <h3>Moneyium</h3>
-            <p>A secure, full-stack virtual economy platform.</p>
-            <ul class="tags"><li>node.js</li><li>sqlite</li><li>economy</li></ul>
-            <div class="actions">
-              <a class="btn btn-sm" href="https://github.com/Qrdz0/moneyium" target="_blank" rel="noopener noreferrer">Source</a>
+          <article class="project" aria-labelledby="p-moneyium">
+            <figure class="shot">
+              <img src="screenshots/moneyium.svg" width="1200" height="750" alt="Moneyium virtual economy dashboard" loading="lazy">
+            </figure>
+            <div class="body">
+              <p class="mono">~/projects/moneyium</p>
+              <h3 id="p-moneyium">Moneyium</h3>
+              <p>A secure, full-stack virtual economy platform.</p>
+              <div class="built">
+                <h4>What I built</h4>
+                <ul>
+                  <li>Custom SQLite wrappers</li>
+                  <li>Secure Bcrypt authentication</li>
+                  <li>Anti-dupe transaction logic</li>
+                  <li>A real-time social feed</li>
+                </ul>
+              </div>
+              <ul class="tags" aria-label="Technologies"><li>node.js</li><li>sqlite</li><li>bcrypt</li></ul>
+              <div class="actions">
+                <a class="btn btn-sm" href="https://github.com/Qrdz0/moneyium" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
             </div>
           </article>
 
-          <article class="project">
-            <p class="mono">~/projects/aim-trainer</p>
-            <h3>Aim Trainer</h3>
-            <p>A React and Canvas aim trainer with Classic, Gridshot and Tracking modes, and a leaderboard that only accepts server-verified scores.</p>
-            <ul class="tags"><li>react</li><li>canvas</li><li>leaderboard</li></ul>
-            <div class="actions">
-              <a class="btn btn-sm" href="https://github.com/Qrdz0/aim-trainer" target="_blank" rel="noopener noreferrer">Source</a>
+          <article class="project" aria-labelledby="p-aim">
+            <figure class="shot">
+              <img src="screenshots/aim-trainer.svg" width="1200" height="750" alt="Aim Trainer game mode in progress" loading="lazy">
+            </figure>
+            <div class="body">
+              <p class="mono">~/projects/aim-trainer</p>
+              <h3 id="p-aim">Aim Trainer</h3>
+              <p>A browser aim trainer with a leaderboard that only accepts scores the server has verified.</p>
+              <div class="built">
+                <h4>What I built</h4>
+                <ul>
+                  <li>A server-authoritative leaderboard</li>
+                  <li>Secure user authentication</li>
+                  <li>3 distinct HTML5 Canvas game modes: Gridshot, Tracking and Peek</li>
+                </ul>
+              </div>
+              <ul class="tags" aria-label="Technologies"><li>canvas</li><li>auth</li><li>leaderboard</li></ul>
+              <div class="actions">
+                <span class="btn btn-sm soon" aria-label="Live demo coming soon">Live Demo <span class="soon-tag">Coming Soon</span></span>
+              </div>
             </div>
           </article>
         </div>
@@ -376,6 +463,21 @@
         </div>
       </div>
     </section>
+
+    <section class="block" id="now" aria-labelledby="now-title">
+      <div class="wrap">
+        <div class="head">
+          <p class="mono">~/now</p>
+          <h2 id="now-title">Currently building</h2>
+        </div>
+        <ul class="now">
+          <li><strong>VibeCode Labs</strong><span class="mono">Agency</span></li>
+          <li><strong>Moneyium</strong><span class="mono">Revival SaaS</span></li>
+          <li><strong>Offensive Security</strong><span class="mono">Exploring on TryHackMe</span></li>
+        </ul>
+      </div>
+    </section>
+
     <section class="block" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
         <div class="head">
@@ -396,16 +498,38 @@
   </main>
 
   <footer>
-    <div class="wrap legal">
-      <p>© 2026 Qrdz. All rights reserved.</p>
-      <nav aria-label="Legal">
-        <a class="link" href="privacy.html">Privacy Policy</a>
-        <a class="link" href="terms.html">Terms of Service</a>
-      </nav>
+    <div class="wrap">
+      <p class="studio">VibeCode Labs is an independent development studio. We do not collect analytics, cookies, or track personal data on this portfolio.</p>
+      <div class="legal">
+        <p>© 2026 Qrdz. All rights reserved.</p>
+        <nav aria-label="Legal">
+          <a class="link" href="privacy.html">Privacy Policy</a>
+          <a class="link" href="terms.html">Terms of Service</a>
+        </nav>
+      </div>
     </div>
   </footer>
 
   <script>
+    // Mobile menu: toggle, close on link tap, Escape or a tap outside
+    (() => {
+      const btn = document.querySelector('.menu-btn');
+      const menu = document.getElementById('menu');
+      const setOpen = (open) => {
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        menu.classList.toggle('open', open);
+      };
+      btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+      menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('open')) { setOpen(false); btn.focus(); }
+      });
+      document.addEventListener('click', (e) => {
+        if (menu.classList.contains('open') && !e.target.closest('.top')) setOpen(false);
+      });
+    })();
+
     // 3-layer parallax snow: far layers fall slower, fade more and shift less on scroll
     (() => {
       const canvas = document.getElementById('snow');
